@@ -1,0 +1,96 @@
+<!-- tienda/templates/tienda/pagina_principal.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompuMas - Tienda de Computadoras</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-rz6X4CggXp7ktNH0d6brMPz3CS6T5+q7oK4zmfXrSRfRIEXCymG3zAzjf1qT0UuB" crossorigin="anonymous">
+
+    <style>
+        /* Estilos personalizados para la disposición de las tarjetas */
+        .card {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para la barra de navegación */
+        nav.navbar {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Estilos para los íconos de redes sociales */
+        .social-icons {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">CompuMas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'pagina_principal' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lista_computadoras' %}">Computadoras</a>
+                </li>
+                <!-- Agregar más enlaces según sea necesario -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="display-4">{{ mensaje_bienvenida }}</h2>
+    <p class="lead">Explora nuestra selección de computadoras de última generación.</p>
+
+    <!-- Lista de Computadoras Destacadas -->
+    <h3 class="mt-5">Computadoras Destacadas</h3>
+    <div class="row">
+        {% for computadora in computadoras_destacadas %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ computadora.imagen.url }}" class="card-img-top" alt="{{ computadora.marca }} {{ computadora.modelo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ computadora.marca }} {{ computadora.modelo }}</h5>
+                        <p class="card-text">{{ computadora.descripcion }}</p>
+                        <p class="card-text">Precio: ${{ computadora.precio }}</p>
+                        <button class="btn btn-primary" onclick="alert('¡Producto agregado al carrito!')">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2023 CompuMas - Tienda de Computadoras. Todos los derechos reservados.</p>
+    <!-- Agrega enlaces a las redes sociales con íconos -->
+    <a href="#" class="social-icons" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="social-icons" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-icons" target="_blank"><i class="fab fa-instagram"></i></a>
+</footer>
+
+<!-- Agrega la referencia a Bootstrap JS y Popper.js (si no los tienes ya) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofSrbV3DkFaE5gDD0epFQj6pddHJF2ii2" crossorigin="anonymous"></script>
+<!-- Agrega la referencia a Font Awesome para los íconos -->
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
